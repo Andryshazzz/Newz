@@ -7,13 +7,31 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		DE067CE33007AC970005B171 /* Newz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Newz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEFA0A89300A3F4D003D5BB5 /* Newz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Newz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DEFA0A7B300A3A5F003D5BB5 /* Exceptions for "Newz" folder in "Newz" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DE067CE23007AC970005B171 /* Newz */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DE067CE53007AC970005B171 /* Newz */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DEFA0A7B300A3A5F003D5BB5 /* Exceptions for "Newz" folder in "Newz" target */,
+			);
 			path = Newz;
+			sourceTree = "<group>";
+		};
+		DEFA0A87300A3F05003D5BB5 /* Config */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,17 +50,10 @@
 		DE067CDA3007AC970005B171 = {
 			isa = PBXGroup;
 			children = (
+				DEFA0A87300A3F05003D5BB5 /* Config */,
 				DE067CE53007AC970005B171 /* Newz */,
-				DE067CE43007AC970005B171 /* Products */,
+				DEFA0A89300A3F4D003D5BB5 /* Newz.app */,
 			);
-			sourceTree = "<group>";
-		};
-		DE067CE43007AC970005B171 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DE067CE33007AC970005B171 /* Newz.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -62,12 +73,13 @@
 			);
 			fileSystemSynchronizedGroups = (
 				DE067CE53007AC970005B171 /* Newz */,
+				DEFA0A87300A3F05003D5BB5 /* Config */,
 			);
 			name = Newz;
 			packageProductDependencies = (
 			);
 			productName = Newz;
-			productReference = DE067CE33007AC970005B171 /* Newz.app */;
+			productReference = DEFA0A89300A3F4D003D5BB5 /* Newz.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -94,8 +106,10 @@
 			);
 			mainGroup = DE067CDA3007AC970005B171;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = DE067CE43007AC970005B171 /* Products */;
+			productRefGroup = DE067CDA3007AC970005B171;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -127,6 +141,8 @@
 /* Begin XCBuildConfiguration section */
 		DE067CEC3007AC970005B171 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DEFA0A87300A3F05003D5BB5 /* Config */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -190,6 +206,8 @@
 		};
 		DE067CED3007AC970005B171 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DEFA0A87300A3F05003D5BB5 /* Config */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -246,6 +264,8 @@
 		};
 		DE067CEF3007AC970005B171 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DEFA0A87300A3F05003D5BB5 /* Config */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -253,6 +273,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Newz/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -277,6 +298,8 @@
 		};
 		DE067CF03007AC970005B171 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DEFA0A87300A3F05003D5BB5 /* Config */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -284,6 +307,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Newz/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
