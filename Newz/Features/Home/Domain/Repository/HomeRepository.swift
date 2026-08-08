@@ -3,8 +3,8 @@ import Combine
 
 /// Repository interface for working with the main screen.
 protocol HomeRepository {
-    /// Retrieves a list of news articles.
-    func getNews(page: Int, pageSize: Int) -> AnyPublisher<[Article], Error>
+    /// Retrieves news by category.
+    func getNewsByCategory(_ category: String, page: Int, pageSize: Int) -> AnyPublisher<[Article], Error>
 }
 
 /// Implementation of the repository for working with the main screen.
@@ -17,7 +17,7 @@ final class HomeRepositoryImpl: HomeRepository {
            self.newsDataSource = newsDataSource
        }
     
-    func getNews(page: Int, pageSize: Int = 10) -> AnyPublisher<[Article], any Error> {
-        return newsDataSource.getNews(page: page, pageSize: pageSize)
-    }
+    func getNewsByCategory(_ category: String, page: Int, pageSize: Int) -> AnyPublisher<[Article], Error> {
+           newsDataSource.getNewsByCategory(category, page: page, pageSize: pageSize)
+       }
 }

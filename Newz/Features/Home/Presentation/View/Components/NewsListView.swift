@@ -12,6 +12,16 @@ struct NewsListView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.all, 16)
                 
+                
+                CategoryTabBar(
+                    categories: vm.categories,
+                    selectedCategory: $vm.selectedCategory,
+                    onCategorySelected: { category in
+                        vm.selectCategory(category)
+                    }
+                )
+                .padding(.bottom, 12)
+                
                 ScrollView {
                     if !vm.isLoading && !vm.news.isEmpty {
                         LazyVStack(spacing: 16) {
@@ -39,7 +49,9 @@ struct NewsListView: View {
                     LoadingView()
                 } else if vm.news.isEmpty {
                     EmptyNewsView(
-                        onRetry: vm.getNews
+                        onRetry: {
+                            vm.selectCategory(vm.selectedCategory)
+                        }
                     )
                 }
             }

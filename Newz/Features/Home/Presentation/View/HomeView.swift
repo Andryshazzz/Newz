@@ -21,7 +21,7 @@ struct HomeView: View {
             .environmentObject(vm)
             .task {
                 if vm.news.isEmpty {
-                    vm.getNews()
+                    vm.selectCategory(vm.selectedCategory)
                 }
             }
     }

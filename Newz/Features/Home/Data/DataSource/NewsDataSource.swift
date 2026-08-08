@@ -3,21 +3,20 @@ import Combine
 
 /// Data source interface for working with news.
 protocol NewsDataSource {
-    /// Retrieves a list of news articles.
-    func getNews(page: Int, pageSize: Int) -> AnyPublisher<[Article], Error>
+    /// Retrieves news by category.
+    func getNewsByCategory(_ category: String, page: Int, pageSize: Int) -> AnyPublisher<[Article], Error>
 }
 
 /// Implementation of the data source for working with news.
 final class NewsDataSourceImpl: NewsDataSource {
-    func getNews(page: Int, pageSize: Int = 10) -> AnyPublisher<[Article], any Error> {
-        let url = "\(AppEnvironment.baseURL)/top-headlines?country=us&page=\(page)&pageSize=\(pageSize)&apiKey=\(AppEnvironment.apiKey)"
+    func getNewsByCategory(_ category: String, page: Int, pageSize: Int = 10) -> AnyPublisher<[Article], any Error> {
+        let url = "\(AppEnvironment.baseURL)/top-headlines?country=us&category=\(category)&page=\(page)&pageSize=\(pageSize)&apiKey=\(AppEnvironment.apiKey)"
         
         guard let url = URL(string: url) else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }
         
         let decoder = JSONDecoder()
-        
         decoder.dateDecodingStrategy = .iso8601
         
         return URLSession.shared.dataTaskPublisher(for: url)
@@ -36,7 +35,7 @@ final class NewsDataSourceImpl: NewsDataSource {
                 print("📊 Articles in this page: \(response.articles?.count ?? 0)")
                 
                 let validArticles = response.articles?.filter { article in
-                    article.title != nil && article.url != nil
+                    article.url != nil
                 } ?? []
                 
                 print("✅ Valid articles after filtering: \(validArticles.count)")
