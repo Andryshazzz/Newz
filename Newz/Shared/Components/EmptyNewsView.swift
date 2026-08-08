@@ -6,21 +6,20 @@ struct EmptyNewsView: View {
     let onRetry: () -> Void
     
     var body: some View {
-            VStack(spacing: 16) {
-                Text("No News Available...")
+        VStack(spacing: 16) {
+            Text("No News Available...")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 40)
+            
+            Button(action: onRetry) {
+                Text("Try Again")
                     .font(.subheadline)
-                    .foregroundColor(.black)
-                    .padding(.horizontal, 40)
-                    .shadow(color: .black.opacity(0.3), radius: 5, x: 1, y: 1)
-                
-                Button(action: onRetry) {
-                    Text("Try Again")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                        .frame(width: 80, height: 30)
-                }
-                .buttonStyle(.glass)
+                    .fontWeight(.medium)
+                    .frame(width: 80, height: 30)
             }
-            .frame(maxWidth: .infinity)
+            .buttonStyle(.glass)
         }
+        .frame(maxWidth: .infinity)
+    }
 }

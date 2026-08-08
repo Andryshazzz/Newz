@@ -5,12 +5,15 @@ struct NewsCard: View {
     /// Article.
     let article: Article
     
+    /// Flag for save button state.
+    let isSaved: Bool
+    
+    /// Action closure triggered when the save button is tapped.
+    var onSave: (() -> Void)?
+    
     /// The horizontal size class of the current environment.
     /// Used to adapt the layout for different device sizes.
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
-    /// Flag for save button state.
-    @State private var isSaved: Bool = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -51,11 +54,11 @@ struct NewsCard: View {
             HStack(alignment: .bottom, spacing: 12) {
                 VStack(alignment: .leading, spacing: 6) {
                     GlowText(
-                            text: article.title,
-                            font: .headline,
-                            fontWeight: .bold,
-                            lineLimit: 2,
-                        )
+                        text: article.title,
+                        font: .headline,
+                        fontWeight: .bold,
+                        lineLimit: 2,
+                    )
                     
                     HStack(spacing: 4) {
                         if let author = article.author {
@@ -74,21 +77,21 @@ struct NewsCard: View {
                                 .foregroundColor(.white.opacity(0.7))
                         }
                         
-                            GlowText(
-                                text: article.publishedAt.relativeFormatted(),
-                                font: .caption,
-                                fontWeight: .medium,
-                                lineLimit: 1,
-                                opacity: 0.9
-                            )
+                        GlowText(
+                            text: article.publishedAt.relativeFormatted(),
+                            font: .caption,
+                            fontWeight: .medium,
+                            lineLimit: 1,
+                            opacity: 0.9
+                        )
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Spacer()
                 
-                Button{
-                    isSaved.toggle()
+                Button {
+                    onSave?()
                 } label: {
                     Image(systemName: isSaved ? "bookmark.fill" : "bookmark")
                         .foregroundStyle(isSaved ? .blue : .primary)

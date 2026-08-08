@@ -3,12 +3,15 @@ import SwiftUI
 /// Entry point for the Home feature.
 /// Creates and provides the dependency scope for all screens within this feature.
 struct HomeEntryView: View {
+    /// App scope.
+    @Environment(\.scope) private var scope: AnyScope?
     
-    /// Home scope.
-    private let scope = HomeScopeImpl()
-
     var body: some View {
-        HomeView(scope: scope)
-            .diScope(scope)
+        if let appScope: AppScope = scope?.resolve() {
+            let homeScope = HomeScopeImpl(appScope: appScope)
+            
+            HomeView(scope: homeScope)
+                .diScope(homeScope)
+        }
     }
 }

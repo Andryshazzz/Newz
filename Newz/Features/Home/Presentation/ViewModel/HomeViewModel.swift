@@ -21,6 +21,9 @@ class HomeViewModel: ObservableObject {
     /// Indicates if there are more pages to load.
     @Published var hasMorePages = true
     
+    /// Dictionary tracking saved state for each article by ID.
+    @Published var savedStates: [String: Bool] = [:]
+    
     /// Current page number for pagination.
     private var currentPage = 1
     
@@ -61,6 +64,7 @@ class HomeViewModel: ObservableObject {
                 self.news = news
                 self.hasMorePages = news.count >= self.pageSize
                 self.currentPage += 1
+                self.updateSavedStates()
             }
             .store(in: &cancellables)
     }
@@ -68,7 +72,6 @@ class HomeViewModel: ObservableObject {
     /// Changes the selected category and loads news.
     func selectCategory(_ category: NewsCategory) {
         selectedCategory = category
-        
         getNewsByCategory(category.rawValue)
     }
     
@@ -95,6 +98,8 @@ class HomeViewModel: ObservableObject {
                 self.news.append(contentsOf: newArticles)
                 self.hasMorePages = newArticles.count >= self.pageSize
                 self.currentPage += 1
+                
+                self.updateSavedStates()
             }
             .store(in: &cancellables)
     }
@@ -105,6 +110,36 @@ class HomeViewModel: ObservableObject {
         
         if currentIndex >= threshold {
             loadMoreNews()
+        }
+    }
+    
+    /// Toggles save state for an article.
+    func toggleSaveArticle(_ article: Article) {
+        do {
+            try homeRepository.saveArticle(article)
+            
+            savedStates[article.id] = !(savedStates[article.id] ?? false)
+        } catch {
+            print("Error saving article: \(error)")
+        }
+    }
+    
+    /// Updates saved states for all loaded articles.
+    private func updateSavedStates() {
+        for article in news {
+            if savedStates[article.id] == nil {
+                savedStates[article.id] = isArticleSaved(article)
+            }
+        }
+    }
+    
+    /// Checks if an article is saved.
+    private func isArticleSaved(_ article: Article) -> Bool {
+        do {
+            return try homeRepository.isArticleSaved(article)
+        } catch {
+            print("Error checking save status: \(error)")
+            return false
         }
     }
 }

@@ -6,13 +6,23 @@ struct NewsDetailView: View {
     let article: Article
     
     /// Flag for save button state.
-    @State private var isSaved: Bool = false
+    let isSaved: Bool
+    
+    /// Flag for show save button.
+    let showSaveButton: Bool
+    
+    /// Action closure triggered when the save button is tapped.
+    var onSave: (() -> Void)?
     
     /// Random article reading time.
     private let randomReadTime: Int
        
-    init(article: Article) {
+    /// Creates a new instance of NewsDetailView.
+    init(article: Article, isSaved: Bool = false, showSaveButton: Bool = false, onSave: (() -> Void)? = nil) {
         self.article = article
+        self.isSaved = isSaved
+        self.showSaveButton = showSaveButton
+        self.onSave = onSave
         self.randomReadTime = Int.random(in: 1...15)
     }
     
@@ -83,12 +93,14 @@ struct NewsDetailView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button{
-                        isSaved.toggle()
-                    } label: {
-                        Image(systemName: isSaved ? "bookmark.fill" : "bookmark")
-                            .foregroundStyle(isSaved ? .blue : .primary)
+                if showSaveButton {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            onSave?()
+                        } label: {
+                            Image(systemName: isSaved ? "bookmark.fill" : "bookmark")
+                                .foregroundStyle(isSaved ? .blue : .primary)
+                        }
                     }
                 }
             }

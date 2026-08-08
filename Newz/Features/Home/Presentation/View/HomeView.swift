@@ -8,6 +8,7 @@ struct HomeView: View {
     /// Home view model.
     @StateObject private var vm: HomeViewModel
     
+    /// Creates a new instance of HomeView.
     init(scope: HomeScope) {
         _vm = StateObject(
             wrappedValue: HomeViewModel(

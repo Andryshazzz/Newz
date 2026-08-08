@@ -5,10 +5,24 @@ import Combine
 protocol NewsDataSource {
     /// Retrieves news by category.
     func getNewsByCategory(_ category: String, page: Int, pageSize: Int) -> AnyPublisher<[Article], Error>
+    
+    /// Saves an article locally.
+    func saveArticle(_ article: Article) throws
+    
+    /// Checks if an article is saved.
+    func isArticleSaved(_ article: Article) throws -> Bool
 }
 
 /// Implementation of the data source for working with news.
 final class NewsDataSourceImpl: NewsDataSource {
+    /// Data access object for saved articles.
+    private let savedArticleDAO: SavedArticleDAO
+    
+    /// Creates a new instance of NewsDataSourceImpl.
+    init(savedArticleDAO: SavedArticleDAO) {
+        self.savedArticleDAO = savedArticleDAO
+    }
+    
     func getNewsByCategory(_ category: String, page: Int, pageSize: Int = 10) -> AnyPublisher<[Article], any Error> {
         let url = "\(AppEnvironment.baseURL)/top-headlines?country=us&category=\(category)&page=\(page)&pageSize=\(pageSize)&apiKey=\(AppEnvironment.apiKey)"
         
@@ -43,5 +57,13 @@ final class NewsDataSourceImpl: NewsDataSource {
                 return validArticles
             }
             .eraseToAnyPublisher()
+    }
+    
+    func saveArticle(_ article: Article) throws {
+        try savedArticleDAO.save(article)
+    }
+    
+    func isArticleSaved(_ article: Article) throws -> Bool {
+        try savedArticleDAO.isSaved(articleId: article.id)
     }
 }

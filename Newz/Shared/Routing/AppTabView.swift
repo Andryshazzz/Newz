@@ -16,7 +16,7 @@ struct AppTabView: View {
                 .tag(AppTab.news)
                 
                 NavigationStack {
-                    Text("Saved Screen")
+                    SavedEntryView()
                 }
                 .tabItem {
                     Label(AppTab.saved.label, systemImage: AppTab.saved.icon)

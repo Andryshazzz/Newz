@@ -8,7 +8,7 @@ struct NewsListView: View {
     var body: some View {
         NavigationView{
             VStack {
-                HeaderView()
+                HeaderView(title: "Today's News")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.all, 16)
                 
@@ -26,11 +26,21 @@ struct NewsListView: View {
                     if !vm.isLoading && !vm.news.isEmpty {
                         LazyVStack(spacing: 16) {
                             ForEach(Array(vm.news.enumerated()), id: \.element.url) { index, article in
-                                NavigationLink(destination: NewsDetailView(article: article)) {
-                                    NewsCard(article: article)
-                                        .onAppear {
-                                            vm.loadMoreNewsIfNeeded(currentIndex: index)
+                                NavigationLink(destination: NewsDetailView(  article: article,
+                                                                             isSaved: vm.savedStates[article.id] ?? false, showSaveButton: true,
+                                                                             onSave: {
+                                    vm.toggleSaveArticle(article)
+                                })) {
+                                    NewsCard(
+                                        article: article,
+                                        isSaved: vm.savedStates[article.id] ?? false,
+                                        onSave: {
+                                            vm.toggleSaveArticle(article)
                                         }
+                                    )
+                                    .onAppear {
+                                        vm.loadMoreNewsIfNeeded(currentIndex: index)
+                                    }
                                 }
                             }
                             

@@ -2,12 +2,13 @@ import SwiftUI
 
 /// Profile view.
 struct ProfileView: View {
-    /// The dependency scope pr;ovided by the parent view.
+    /// The dependency scope provided by the parent view.
     @Environment(\.scope) private var scope: AnyScope?
     
     /// Profile view model.
     @StateObject private var vm: ProfileViewModel
     
+    /// Creates a new instance of ProfileView.
     init(scope: ProfileScope) {
         _vm = StateObject(
             wrappedValue: ProfileViewModel(
@@ -17,89 +18,88 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 24) {
-                Text("Profile")
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(.primary)
-                
-                PersonalInformationView()
-                
-                PreferencesGroup(title: "Reading preferences") {
-                    Toggle(isOn: $vm.isDarkMode)
-                    {
+        Group {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 24) {
+                    PersonalInformationView()
+                    
+                    PreferencesGroup(title: "Reading preferences") {
+                        Toggle(isOn: $vm.isDarkMode) {
+                            SettingsRow(
+                                icon: "moon",
+                                title: "Dark mode"
+                            )
+                        }
+                        
+                        Divider()
+                        
                         SettingsRow(
-                            icon: "moon",
-                            title: "Dark mode"
+                            icon: "textformat.size",
+                            title: "Text size",
+                            trailing: "Medium",
+                            showTrailingIcon: true
                         )
+                        
+                        Divider()
+                        
+                        Toggle(isOn: $vm.dataSaver) {
+                            SettingsRow(
+                                icon: "arrow.down.circle",
+                                title: "Data saver",
+                                subtitle: "Download smaller images"
+                            )
+                        }
                     }
                     
-                    Divider()
-                    
-                    SettingsRow(
-                        icon: "textformat.size",
-                        title: "Text size",
-                        trailing: "Medium",
-                        showTrailingIcon: true
-                    )
-                    
-                    Divider()
-                    
-                    Toggle(isOn: $vm.dataSaver) {
+                    PreferencesGroup {
                         SettingsRow(
                             icon: "arrow.down.circle",
-                            title: "Data saver",
-                            subtitle: "Download smaller images"
+                            title: "Download settings",
+                            showTrailingIcon: true
+                        )
+                        
+                        Divider()
+                        
+                        SettingsRow(
+                            icon: "bell",
+                            title: "Notifications",
+                            showTrailingIcon: true
+                        )
+                        
+                        Divider()
+                        
+                        SettingsRow(
+                            icon: "info.circle",
+                            title: "About",
+                            showTrailingIcon: true
+                        )
+                        
+                        Divider()
+                        
+                        SettingsRow(
+                            icon: "questionmark.circle",
+                            title: "Help & Feedback",
+                            showTrailingIcon: true
                         )
                     }
-                }
-                
-                PreferencesGroup {
-                    SettingsRow(
-                        icon: "arrow.down.circle",
-                        title: "Download settings",
-                        showTrailingIcon: true
-                    )
                     
-                    Divider()
-                    
-                    SettingsRow(
-                        icon: "bell",
-                        title: "Notifications",
-                        showTrailingIcon: true
-                    )
-                    
-                    Divider()
-                    
-                    SettingsRow(
-                        icon: "info.circle",
-                        title: "About",
-                        showTrailingIcon: true
-                    )
-                    
-                    Divider()
-                    
-                    SettingsRow(
-                        icon: "questionmark.circle",
-                        title: "Help & Feedback",
-                        showTrailingIcon: true
-                    )
-                }
-                
-                Button(role: .destructive) {
-                    vm.signOut()
-                } label: {
-                    HStack {
-                        Label("Sign Out", systemImage: "rectangle.portrait.and.arrow.right")
-                            .frame(maxWidth: .infinity)
-                            .foregroundStyle(.red)
+                    Button(role: .destructive) {
+                        vm.signOut()
+                    } label: {
+                        HStack {
+                            Label("Sign Out", systemImage: "rectangle.portrait.and.arrow.right")
+                                .frame(maxWidth: .infinity)
+                                .foregroundStyle(.red)
+                        }
+                        .padding(.vertical, 14)
                     }
-                    .padding(.vertical, 14)
+                    .buttonStyle(.glass)
                 }
-                .buttonStyle(.glass)
+                .padding()
             }
-            .padding()
+            .background(.background)
         }
-        .background(.background)
+        .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.inline) 
     }
 }
