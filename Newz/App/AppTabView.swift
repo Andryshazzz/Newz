@@ -24,7 +24,7 @@ struct AppTabView: View {
                 .tag(AppTab.saved)
                 
                 NavigationStack {
-                    Text("Profile Screen")
+                    ProfileEntryView()
                 }
                 .tabItem {
                     Label(AppTab.profile.label, systemImage: AppTab.profile.icon)

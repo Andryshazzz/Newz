@@ -6,6 +6,6 @@ struct HeaderView: View {
         Text("Today's News")
             .font(.largeTitle)
             .fontWeight(.semibold)
-            .foregroundColor(.black)
+            .foregroundStyle(.primary)
        }
    }
