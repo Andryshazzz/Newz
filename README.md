@@ -1,20 +1,21 @@
 # Newz
 
-<p align="center">
-  <img src="Images/AppIcon.png" width="450" alt="Newz App Logo">
-</p>
-
-A modern news reader app built with SwiftUI, featuring a beautiful glass-morphism design, dark mode support, and offline article saving.
+<table>
+  <tr>
+    <td width="33%">
+      <img src="Images/AppIcon.png" width="100%" alt="Newz App Logo">
+    </td>
+    <td width="67%">
+      <h3>A modern news reader app built with SwiftUI, featuring a beautiful glass-morphism design, dark mode support, and offline article saving. Stay informed with the latest headlines across multiple categories, bookmark articles for later reading, and enjoy a seamless browsing experience with smooth animations and adaptive theming.</h3>
+    </td>
+  </tr>
+</table>
 
 ## 📱 Screenshots
 
-<p align="center">
-  <img src="Images/WhiteExample.png" width="300" alt="Newz Light Mode">
-</p>
+<img src="Images/WhiteExample.png" width="100%" alt="Newz Light Mode">
 
-<p align="center">
-  <img src="Images/BlackExample.png" width="300" alt="Newz Dark Mode">
-</p>
+<img src="Images/BlackExample.png" width="100%" alt="Newz Dark Mode">
 
 ## 🛠 Tech Stack
 
@@ -28,3 +29,5 @@ A modern news reader app built with SwiftUI, featuring a beautiful glass-morphis
 - **SwiftData** — Local persistence for saved articles
 - **Combine** — Reactive programming for network calls and state management
 - **NewsAPI** — Real-time news data from [newsapi.org](https://newsapi.org)
+
+Built with ❤️ using SwiftUI
