@@ -1,6 +1,6 @@
 # Newz
 
-![App Logo](link-to-your-logo)
+![App Logo](Images/AppIcon.png)
 
 A modern news reader app built with SwiftUI, featuring a beautiful glass-morphism design, dark mode support, and offline article saving.
 
@@ -8,7 +8,7 @@ A modern news reader app built with SwiftUI, featuring a beautiful glass-morphis
 
 | Light Mode | Dark Mode |
 |------------|-----------|
-| ![Light Mode](link-to-light-screenshot) | ![Dark Mode](link-to-dark-screenshot) |
+| ![Light Mode](Images/WhiteExample.png) | ![Dark Mode](Images/BlackExample.png) |
 
 ## 🛠 Tech Stack
 
