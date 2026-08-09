@@ -1,7 +1,7 @@
 # Newz
 
 <p align="center">
-  <img src="Images/AppIcon.png" width="150" alt="Newz App Logo">
+  <img src="Images/AppIcon.png" width="450" alt="Newz App Logo">
 </p>
 
 A modern news reader app built with SwiftUI, featuring a beautiful glass-morphism design, dark mode support, and offline article saving.
