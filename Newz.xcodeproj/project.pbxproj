@@ -21,6 +21,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		DE0059E630283F2700387AB5 /* Images */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Images;
+			sourceTree = "<group>";
+		};
 		DE067CE53007AC970005B171 /* Newz */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -53,6 +58,7 @@
 				DEFA0A87300A3F05003D5BB5 /* Config */,
 				DE067CE53007AC970005B171 /* Newz */,
 				DEFA0A89300A3F4D003D5BB5 /* Newz.app */,
+				DE0059E630283F2700387AB5 /* Images */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +78,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				DE0059E630283F2700387AB5 /* Images */,
 				DE067CE53007AC970005B171 /* Newz */,
 				DEFA0A87300A3F05003D5BB5 /* Config */,
 			);
