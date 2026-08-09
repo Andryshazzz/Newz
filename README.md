@@ -1,14 +1,20 @@
 # Newz
 
-![App Logo](Images/AppIcon.png)
+<p align="center">
+  <img src="Images/AppIcon.png" width="150" alt="Newz App Logo">
+</p>
 
 A modern news reader app built with SwiftUI, featuring a beautiful glass-morphism design, dark mode support, and offline article saving.
 
 ## 📱 Screenshots
 
-| Light Mode | Dark Mode |
-|------------|-----------|
-| ![Light Mode](Images/WhiteExample.png) | ![Dark Mode](Images/BlackExample.png) |
+<p align="center">
+  <img src="Images/WhiteExample.png" width="300" alt="Newz Light Mode">
+</p>
+
+<p align="center">
+  <img src="Images/BlackExample.png" width="300" alt="Newz Dark Mode">
+</p>
 
 ## 🛠 Tech Stack
 
